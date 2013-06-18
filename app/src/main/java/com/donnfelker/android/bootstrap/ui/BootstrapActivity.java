@@ -1,15 +1,13 @@
 package com.donnfelker.android.bootstrap.ui;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.donnfelker.android.bootstrap.BootstrapApplication;
 
-import butterknife.Views;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 
 /**
  * Base activity for a Bootstrap activity which does not use fragments.
@@ -21,14 +19,6 @@ public abstract class BootstrapActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
 
         BootstrapApplication.getInstance().inject(this);
-    }
-
-    @Override
-    public void setContentView(int layoutResId) {
-        super.setContentView(layoutResId);
-
-        // Used to inject views with the Butterknife library
-        Views.inject(this);
     }
 
     @Override

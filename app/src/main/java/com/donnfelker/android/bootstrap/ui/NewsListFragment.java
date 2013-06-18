@@ -97,7 +97,7 @@ public class NewsListFragment extends ItemListFragment<News> {
     public void onListItemClick(ListView l, View v, int position, long id) {
         News news = ((News) l.getItemAtPosition(position));
 
-        startActivity(new Intent(getActivity(), NewsActivity.class).putExtra(NEWS_ITEM, news));
+        startActivity(new Intent(getActivity(), NewsActivity_.class).putExtra(NEWS_ITEM, news));
     }
 
     @Override

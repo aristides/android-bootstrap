@@ -2,25 +2,15 @@ package com.donnfelker.android.bootstrap;
 
 import android.accounts.AccountManager;
 import android.content.Context;
-
 import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
-import com.donnfelker.android.bootstrap.core.CheckIn;
 import com.donnfelker.android.bootstrap.core.TimerService;
-import com.donnfelker.android.bootstrap.ui.BootstrapTimerActivity;
-import com.donnfelker.android.bootstrap.ui.CarouselActivity;
-import com.donnfelker.android.bootstrap.ui.CheckInsListFragment;
-import com.donnfelker.android.bootstrap.ui.ItemListFragment;
-import com.donnfelker.android.bootstrap.ui.NewsActivity;
-import com.donnfelker.android.bootstrap.ui.NewsListFragment;
-import com.donnfelker.android.bootstrap.ui.UserActivity;
-import com.donnfelker.android.bootstrap.ui.UserListFragment;
+import com.donnfelker.android.bootstrap.ui.*;
 import com.squareup.otto.Bus;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+
+import javax.inject.Singleton;
 
 /**
  * Dagger module for setting up provides statements.
@@ -36,9 +26,9 @@ import dagger.Provides;
                 CarouselActivity.class,
                 BootstrapTimerActivity.class,
                 CheckInsListFragment.class,
-                NewsActivity.class,
+                NewsActivity_.class,
                 NewsListFragment.class,
-                UserActivity.class,
+                UserActivity_.class,
                 UserListFragment.class,
                 TimerService.class
         }

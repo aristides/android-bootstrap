@@ -11,13 +11,15 @@ import com.donnfelker.android.bootstrap.core.AvatarLoader;
 import com.donnfelker.android.bootstrap.core.User;
 import javax.inject.Inject;
 
-import butterknife.InjectView;
-import butterknife.Views;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.ViewById;
 
+@EActivity(R.layout.user_view)
 public class UserActivity extends BootstrapActivity {
 
-    @InjectView(R.id.iv_avatar) protected ImageView avatar;
-    @InjectView(R.id.tv_name) protected TextView name;
+    @ViewById protected ImageView iv_avatar;
+    @ViewById protected TextView tv_name;
 
     @Inject protected AvatarLoader avatarLoader;
 
@@ -27,18 +29,17 @@ public class UserActivity extends BootstrapActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.user_view);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
+    @AfterViews
+    protected void loadUser(){
         if(getIntent() != null && getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(USER);
         }
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        avatarLoader.bind(avatar, user);
-        name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
-
+        avatarLoader.bind(iv_avatar, user);
+        tv_name.setText(String.format("%s %s", user.getFirstName(), user.getLastName()));
     }
 
 

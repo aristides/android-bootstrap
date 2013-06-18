@@ -93,7 +93,7 @@ public class UserListFragment  extends ItemListFragment<User> {
     public void onListItemClick(ListView l, View v, int position, long id) {
         User user = ((User) l.getItemAtPosition(position));
 
-        startActivity(new Intent(getActivity(), UserActivity.class).putExtra(USER, user));
+        startActivity(new Intent(getActivity(), UserActivity_.class).putExtra(USER, user));
     }
 
     @Override
