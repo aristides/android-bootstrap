@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.donnfelker.android.bootstrap.BootstrapApplication;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.OptionsItem;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
@@ -12,6 +14,7 @@ import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
 /**
  * Base activity for a Bootstrap activity which does not use fragments.
  */
+@EActivity
 public abstract class BootstrapActivity extends SherlockActivity {
 
     @Override
@@ -21,17 +24,15 @@ public abstract class BootstrapActivity extends SherlockActivity {
         BootstrapApplication.getInstance().inject(this);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:  // This is the home button in the top left corner of the screen.
-                // Dont call finish! Because activity could have been started by an outside activity and the home button would not operated as expected!
-                Intent homeIntent = new Intent(this, CarouselActivity.class);
-                homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(homeIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    /**
+     * This is the home button in the top left corner of the screen.
+     * Dont call finish! Because activity could have been started by an outside activity and the home button would not operated as expected!
+     * */
+    @OptionsItem
+    boolean homeSelected() {
+        Intent homeIntent = new Intent(this, CarouselActivity_.class);
+        homeIntent.addFlags(FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(homeIntent);
+        return true;
     }
 }

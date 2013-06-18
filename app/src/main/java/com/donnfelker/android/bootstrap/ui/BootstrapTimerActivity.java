@@ -17,12 +17,15 @@ import com.donnfelker.android.bootstrap.core.TimerPausedEvent;
 import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.core.TimerTickEvent;
 import javax.inject.Inject;
+
+import com.googlecode.androidannotations.annotations.EActivity;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
 import butterknife.InjectView;
 import butterknife.Views;
 
+@EActivity(R.layout.bootstrap_timer)
 public class BootstrapTimerActivity extends BootstrapFragmentActivity implements View.OnClickListener {
 
     @Inject Bus BUS;
@@ -36,8 +39,6 @@ public class BootstrapTimerActivity extends BootstrapFragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.bootstrap_timer);
 
         setTitle(R.string.timer);
 

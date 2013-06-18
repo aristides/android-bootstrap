@@ -23,7 +23,7 @@
         android:debuggable="true">
 
         <activity
-            android:name=".ui.CarouselActivity"
+            android:name=".ui.CarouselActivity_"
             android:configChanges="orientation|keyboardHidden|screenSize" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.BootstrapTimerActivity_"
+        <activity android:name=".ui.BootstrapTimerActivity"
                   android:configChanges="orientation|keyboardHidden|screenSize" android:label="@string/app_name"
                   android:launchMode="singleTop"/>
 

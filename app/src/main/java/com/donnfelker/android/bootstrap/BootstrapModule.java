@@ -23,7 +23,7 @@ import javax.inject.Singleton;
         injects = {
                 BootstrapApplication.class,
                 BootstrapAuthenticatorActivity.class,
-                CarouselActivity.class,
+                CarouselActivity_.class,
                 BootstrapTimerActivity.class,
                 CheckInsListFragment.class,
                 NewsActivity_.class,
