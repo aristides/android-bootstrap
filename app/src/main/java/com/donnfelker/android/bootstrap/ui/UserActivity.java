@@ -11,9 +11,9 @@ import com.donnfelker.android.bootstrap.core.AvatarLoader;
 import com.donnfelker.android.bootstrap.core.User;
 import javax.inject.Inject;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.user_view)
 public class UserActivity extends BootstrapActivity {

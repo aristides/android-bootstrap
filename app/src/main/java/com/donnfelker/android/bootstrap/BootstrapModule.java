@@ -2,7 +2,7 @@ package com.donnfelker.android.bootstrap;
 
 import android.accounts.AccountManager;
 import android.content.Context;
-import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity;
+import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity_;
 import com.donnfelker.android.bootstrap.authenticator.LogoutService;
 import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.ui.*;
@@ -22,9 +22,9 @@ import javax.inject.Singleton;
 
         injects = {
                 BootstrapApplication.class,
-                BootstrapAuthenticatorActivity.class,
+                BootstrapAuthenticatorActivity_.class,
                 CarouselActivity_.class,
-                BootstrapTimerActivity.class,
+                BootstrapTimerActivity_.class,
                 CheckInsListFragment.class,
                 NewsActivity_.class,
                 NewsListFragment.class,

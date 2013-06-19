@@ -27,7 +27,6 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -45,25 +44,22 @@ import com.donnfelker.android.bootstrap.util.SafeAsyncTask;
 import com.donnfelker.android.bootstrap.util.Strings;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.github.kevinsawicki.wishlist.Toaster;
-import com.donnfelker.android.bootstrap.R.id;
 import com.donnfelker.android.bootstrap.R.layout;
 import com.donnfelker.android.bootstrap.R.string;
 import com.donnfelker.android.bootstrap.ui.TextWatcherAdapter;
 import com.google.gson.Gson;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
-import butterknife.Views;
-
-import static com.donnfelker.android.bootstrap.core.Constants.Http.USERNAME;
-import static com.donnfelker.android.bootstrap.core.Constants.Http.PASSWORD;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 /**
  * Activity to authenticate the user against an API (example API on Parse.com)
  */
+@EActivity(layout.login_activity)
 public class BootstrapAuthenticatorActivity extends SherlockAccountAuthenticatorActivity {
 
     /**
@@ -89,9 +85,10 @@ public class BootstrapAuthenticatorActivity extends SherlockAccountAuthenticator
 
     private AccountManager accountManager;
 
-    @InjectView(id.et_email) AutoCompleteTextView emailText;
-    @InjectView(id.et_password) EditText passwordText;
-    @InjectView(id.b_signin) Button signinButton;
+    @ViewById AutoCompleteTextView et_email;
+    @ViewById EditText et_password;
+    @ViewById Button b_signin;
+    @ViewById TextView tv_signup;
 
     private TextWatcher watcher = validationTextWatcher();
 
@@ -133,44 +130,42 @@ public class BootstrapAuthenticatorActivity extends SherlockAccountAuthenticator
         requestNewAccount = email == null;
         confirmCredentials = intent.getBooleanExtra(PARAM_CONFIRMCREDENTIALS,
                 false);
+    }
 
-        setContentView(layout.login_activity);
 
-        Views.inject(this);
-
-        emailText.setAdapter(new ArrayAdapter<String>(this,
+    @AfterViews
+    protected void configureAdapter(){
+        et_email.setAdapter(new ArrayAdapter<String>(this,
                 simple_dropdown_item_1line, userEmailAccounts()));
 
-        passwordText.setOnKeyListener(new OnKeyListener() {
+        et_password.setOnKeyListener(new OnKeyListener() {
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event != null && ACTION_DOWN == event.getAction()
-                        && keyCode == KEYCODE_ENTER && signinButton.isEnabled()) {
-                    handleLogin(signinButton);
+                        && keyCode == KEYCODE_ENTER && b_signin.isEnabled()) {
+                    handleLogin(b_signin);
                     return true;
                 }
                 return false;
             }
         });
 
-        passwordText.setOnEditorActionListener(new OnEditorActionListener() {
+        et_password.setOnEditorActionListener(new OnEditorActionListener() {
 
             public boolean onEditorAction(TextView v, int actionId,
-                    KeyEvent event) {
-                if (actionId == IME_ACTION_DONE && signinButton.isEnabled()) {
-                    handleLogin(signinButton);
+                                          KeyEvent event) {
+                if (actionId == IME_ACTION_DONE && b_signin.isEnabled()) {
+                    handleLogin(b_signin);
                     return true;
                 }
                 return false;
             }
         });
 
-        emailText.addTextChangedListener(watcher);
-        passwordText.addTextChangedListener(watcher);
-
-        TextView signupText = (TextView) findViewById(id.tv_signup);
-        signupText.setMovementMethod(LinkMovementMethod.getInstance());
-        signupText.setText(Html.fromHtml(getString(string.signup_link)));
+        et_email.addTextChangedListener(watcher);
+        et_password.addTextChangedListener(watcher);
+        tv_signup.setMovementMethod(LinkMovementMethod.getInstance());
+        tv_signup.setText(Html.fromHtml(getString(string.signup_link)));
     }
 
     private List<String> userEmailAccounts() {
@@ -197,8 +192,8 @@ public class BootstrapAuthenticatorActivity extends SherlockAccountAuthenticator
     }
 
     private void updateUIWithValidation() {
-        boolean populated = populated(emailText) && populated(passwordText);
-        signinButton.setEnabled(populated);
+        boolean populated = populated(et_email) && populated(et_password);
+        b_signin.setEnabled(populated);
     }
 
     private boolean populated(EditText editText) {
@@ -233,8 +228,8 @@ public class BootstrapAuthenticatorActivity extends SherlockAccountAuthenticator
             return;
 
         if (requestNewAccount)
-            email = emailText.getText().toString();
-        password = passwordText.getText().toString();
+            email = et_email.getText().toString();
+        password = et_password.getText().toString();
         showProgress();
 
         authenticationTask = new SafeAsyncTask<Boolean>() {

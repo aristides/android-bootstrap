@@ -8,18 +8,19 @@ import android.widget.Button;
 
 import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity;
 import com.donnfelker.android.bootstrap.R;
+import com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity_;
 
 
 /**
  * Tests of displaying the authenticator activity
  */
-public class BootstrapAuthenticatorTest extends ActivityInstrumentationTestCase2<BootstrapAuthenticatorActivity> {
+public class BootstrapAuthenticatorTest extends ActivityInstrumentationTestCase2<BootstrapAuthenticatorActivity_> {
 
     /**
      * Create test for {@link com.donnfelker.android.bootstrap.authenticator.BootstrapAuthenticatorActivity}
      */
     public BootstrapAuthenticatorTest() {
-        super(BootstrapAuthenticatorActivity.class);
+        super(BootstrapAuthenticatorActivity_.class);
     }
 
     /**

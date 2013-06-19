@@ -8,18 +8,19 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.donnfelker.android.bootstrap.core.News;
 import com.donnfelker.android.bootstrap.ui.CarouselActivity;
+import com.donnfelker.android.bootstrap.ui.CarouselActivity_;
 
 
 /**
  * Tests for displaying a specific {@link News} item
  */
-public class NewsViewTest extends ActivityInstrumentationTestCase2<CarouselActivity> {
+public class NewsViewTest extends ActivityInstrumentationTestCase2<CarouselActivity_> {
 
     /**
      * Create test for {@link com.donnfelker.android.bootstrap.ui.CarouselActivity}
      */
     public NewsViewTest() {
-        super(CarouselActivity.class);
+        super(CarouselActivity_.class);
     }
 
     /**

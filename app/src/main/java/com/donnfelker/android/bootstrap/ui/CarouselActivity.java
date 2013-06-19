@@ -11,10 +11,10 @@ import com.actionbarsherlock.view.Window;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.R.id;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.OptionsItem;
-import com.googlecode.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.ViewById;
 import com.viewpagerindicator.TitlePageIndicator;
 
 /**
@@ -44,7 +44,7 @@ public class CarouselActivity extends BootstrapFragmentActivity {
 
     @OptionsItem
     boolean timerSelected() {
-        final Intent i = new Intent(this, BootstrapTimerActivity.class);
+        final Intent i = new Intent(this, BootstrapTimerActivity_.class);
         startActivity(i);
         return true;
     }

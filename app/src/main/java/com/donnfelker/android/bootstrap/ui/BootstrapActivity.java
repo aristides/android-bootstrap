@@ -5,8 +5,8 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.donnfelker.android.bootstrap.BootstrapApplication;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;

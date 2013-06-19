@@ -18,35 +18,28 @@ import com.donnfelker.android.bootstrap.core.TimerService;
 import com.donnfelker.android.bootstrap.core.TimerTickEvent;
 import javax.inject.Inject;
 
-import com.googlecode.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import butterknife.InjectView;
-import butterknife.Views;
-
 @EActivity(R.layout.bootstrap_timer)
-public class BootstrapTimerActivity extends BootstrapFragmentActivity implements View.OnClickListener {
+public class BootstrapTimerActivity extends BootstrapFragmentActivity {
 
     @Inject Bus BUS;
 
-    @InjectView(R.id.chronometer) protected TextView chronometer;
-    @InjectView(R.id.start) protected Button start;
-    @InjectView(R.id.stop) protected Button stop;
-    @InjectView(R.id.pause) protected Button pause;
-    @InjectView(R.id.resume) protected Button resume;
+    @ViewById protected TextView chronometer;
+    @ViewById protected Button start;
+    @ViewById protected Button stop;
+    @ViewById protected Button pause;
+    @ViewById protected Button resume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.timer);
-
-        start.setOnClickListener(this);
-        stop.setOnClickListener(this);
-        pause.setOnClickListener(this);
-        resume.setOnClickListener(this);
-
     }
 
     @Override
@@ -63,28 +56,12 @@ public class BootstrapTimerActivity extends BootstrapFragmentActivity implements
         BUS.unregister(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.start:
-                startTimer();
-                break;
-            case R.id.stop:
-                produceStopEvent();
-                break;
-            case R.id.pause:
-                producePauseEvent();
-                break;
-            case R.id.resume:
-                produceResumeEvent();
-                break;
-        }
-    }
 
     /**
      * Starts the timer service
      */
-    private void startTimer() {
+    @Click
+    void startClicked(){
         if(isTimerServiceRunning() == false) {
             final Intent i = new Intent(this, TimerService.class);
             startService(i);
@@ -98,22 +75,29 @@ public class BootstrapTimerActivity extends BootstrapFragmentActivity implements
     /**
      * Posts a {@link StopTimerEvent} message to the {@link Bus}
      */
-    private void produceStopEvent() {
+    @Click
+    void stopClicked(){
         BUS.post(new StopTimerEvent());
     }
 
     /**
      * Posts a {@link PauseTimerEvent} message to the {@link Bus}
      */
-    private void producePauseEvent() {
+    @Click
+    void pauseClicked(){
         BUS.post(new PauseTimerEvent());
     }
 
     /**
      * Posts a {@link ResumeTimerEvent} message to the {@link Bus}
      */
-    private void produceResumeEvent() {
+    @Click
+    void resumeClicked(){
         BUS.post(new ResumeTimerEvent());
+    }
+
+    private void produceResumeEvent() {
+
     }
 
     @Subscribe

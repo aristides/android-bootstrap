@@ -7,9 +7,9 @@ import android.widget.TextView;
 import com.donnfelker.android.bootstrap.R;
 import com.donnfelker.android.bootstrap.core.News;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.news)
 public class NewsActivity extends BootstrapActivity {
